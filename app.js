@@ -1,13 +1,11 @@
-const commandlineArgs = process.argv;
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
+const profileDataArgs = process.argv.slice(2);
 
+const [name, github] = profileDataArgs;
 
-//console.log(process);
+fs.writeFile('./index.html', generatePage(name, github), err => {
+  if (err) throw new Error(err);
 
-var profileDataArgs = process.argv.slice(2, process.argv.length);
-
-const printProfileData = profileDataArr => {
-// no parentheses or {} because both arg and action is one, respectively
-  profileDataArr.forEach(profileItem => console.log(profileItem));
-}
-
-printProfileData(profileDataArgs);
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});

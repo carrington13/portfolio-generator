@@ -1,5 +1,11 @@
-const generatePage = (name, github) => {
-    return `
+module.exports = templateData => {
+   // console.log(templateData);  
+  // destructure projects and about data from templateData based on their property key name
+  const { projects, about, ...header } = templateData
+
+  console.log(projects, about, header);
+  
+  return `
     <!DOCTYPE html> 
     <html lang="en"> 
     <head>
@@ -10,12 +16,12 @@ const generatePage = (name, github) => {
     </head>
   
     <body>
-      <h1>${name}</h1>
-      <h2><a href="https://github.com/${github}">Github</a></h2>
+      <h1>${templateData.name}</h1>
+      <h2><a href="https://github.com/${templateData.github}">Github</a></h2>
     </body>
     </html>
     `;
   };
 
 // turn file into an importable module to be used by app.js
-module.exports = generatePage;
+// module.exports = generatePage;
